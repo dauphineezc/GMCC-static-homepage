@@ -1,1 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Greater Midland • Firstline Homepage</title>
+  <meta name="description" content="Quick links for Greater Midland firstline workers." />
+  <meta name="color-scheme" content="light dark" />
+  <style>
+    :root{
+      --bg: #f7f7f8;
+      --panel: #ffffff;
+      --text: #1b1f23;
+      --muted:#5b6168;
+      --brand:#006f5f;   /* GM green-ish — tweak as needed */
+      --brand-2:#125eaa; /* accent */
+      --ring: #7ad1c0;
+      --border:#e4e6e8;
+    }
+    @media (prefers-color-scheme: dark){
+      :root{
+        --bg:#0f1113; --panel:#14171a; --text:#f5f7fa; --muted:#aab3bd;
+        --border:#23272b; --ring:#2aa198;
+      }
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Inter, Arial, sans-serif;
+      background:var(--bg); color:var(--text);
+    }
+    .wrap{
+      max-width:960px; margin-inline:auto; padding:24px; display:flex; flex-direction:column; gap:16px;
+    }
+    header{
+      display:flex; align-items:center; justify-content:space-between; gap:16px; flex-wrap:wrap;
+    }
+    .brand{
+      display:flex; align-items:center; gap:12px;
+    }
+    .logo{
+      inline-size:40px; block-size:40px; border-radius:8px; background:linear-gradient(135deg,var(--brand),var(--brand-2));
+    }
+    h1{font-size:clamp(1.25rem, 1rem + 1.2vw, 1.75rem); margin:0}
+    .desc{color:var(--muted); margin:0}
+    .controls{
+      display:flex; flex-wrap:wrap; gap:8px; align-items:center;
+    }
+    .role-select, .search{
+      appearance:none; border:1px solid var(--border); background:var(--panel); color:var(--text);
+      border-radius:10px; padding:10px 12px; font-size:0.95rem;
+    }
+    .search{min-width:230px}
+    .grid{
+      display:grid; gap:12px;
+      grid-template-columns: repeat( auto-fit, minmax(240px, 1fr) );
+    }
+    section.role{
+      background:var(--panel); border:1px solid var(--border); border-radius:14px; padding:14px;
+    }
+    section.role h2{
+      font-size:1.05rem; margin:0 0 10px 0; display:flex; align-items:center; gap:8px;
+    }
+    .badge{font-size:0.7rem; color:var(--brand); background:color-mix(in oklab, var(--brand) 12%, transparent);
+      border:1px solid color-mix(in oklab, var(--brand) 45%, transparent); padding:2px 8px; border-radius:999px}
+    ul.links{margin:0; padding:0; list-style:none; display:grid; gap:8px}
+    .link{
+      display:flex; align-items:center; gap:10px; text-decoration:none;
+      border:1px solid var(--border); background:var(--bg); border-radius:12px; padding:10px;
+      transition:transform .05s ease, border-color .15s ease;
+      outline:none;
+    }
+    .link:focus{box-shadow:0 0 0 3px var(--ring); border-color:var(--ring)}
+    .link:hover{transform:translateY(-1px)}
+    .link .icon{
+      inline-size:28px; block-size:28px; border-radius:6px;
+      background:linear-gradient(135deg,var(--brand) 0%, var(--brand-2) 100%);
+      display:inline-flex; align-items:center; justify-content:center; color:white; font-size:14px; flex:none;
+    }
+    .link .txt{display:flex; flex-direction:column}
+    .link .name{font-weight:600; line-height:1.15}
+    .link .note{font-size:.85rem; color:var(--muted)}
+    .sr-only{position:absolute; width:1px; height:1px; padding:0; margin:-1px; overflow:hidden; clip:rect(0,0,0,0); border:0}
+    footer{color:var(--muted); font-size:.85rem; margin-top:8px}
+    .hidden{display:none !important}
+  </style>
+</head>
+<body>
+  <a href="#content" class="sr-only">Skip to content</a>
+  <div class="wrap">
+    <header role="banner" aria-label="Header">
+      <div class="brand">
+        <div class="logo" aria-hidden="true"></div>
+        <div>
+          <h1>Firstline Start Page</h1>
+          <p class="desc">Quick access to commonly used systems — no login required.</p>
+        </div>
+      </div>
+      <div class="controls" role="search">
+        <label class="sr-only" for="roleSelect">Filter by role</label>
+        <select id="roleSelect" class="role-select" aria-label="Filter by role">
+          <option value="all">All roles</option>
+          <option value="welcome-desk">Welcome Desk</option>
+          <option value="wellness-center">Wellness Center</option>
+          <option value="lead-teachers">Lead Teachers</option>
+        </select>
 
+        <label class="sr-only" for="q">Search links</label>
+        <input id="q" class="search" type="search" placeholder="Search links…" autocomplete="off" />
+      </div>
+    </header>
+
+    <main id="content" tabindex="-1">
+      <div id="cards" class="grid" aria-live="polite"></div>
+    </main>
+
+    <footer aria-label="Footer">
+      Hosted serverlessly on Vercel. For issues, contact IT.
+    </footer>
+  </div>
+
+  <script>
+    // ---- Data: swap in your real URLs --------------------------------------
+    const LINKS = {
+      "welcome-desk": {
+        title: "Welcome Desk",
+        items: [
+          { name: "Point of Sale (POS)", url: "https://example.com/pos", note: "Transactions & receipts" },
+          { name: "Member Lookup", url: "https://example.com/member-lookup", note: "Search accounts" },
+          { name: "Day Pass Form", url: "https://example.com/day-pass", note: "Guest check-in" },
+        ]
+      },
+      "wellness-center": {
+        title: "Wellness Center",
+        items: [
+          { name: "Fitness Scheduling", url: "https://example.com/scheduling", note: "Classes & courts" },
+          { name: "Incident Reporting", url: "https://example.com/incidents", note: "Submit a report" },
+          { name: "Equipment Status", url: "https://example.com/equipment", note: "Outages & notes" },
+        ]
+      },
+      "lead-teachers": {
+        title: "Lead Teachers",
+        items: [
+          { name: "Attendance Tracking", url: "https://example.com/attendance", note: "Daily rosters" },
+          { name: "Lesson Plans", url: "https://example.com/lesson-plans", note: "Curriculum hub" },
+          { name: "Parent Communications", url: "https://example.com/parent-comms", note: "Templates & logs" },
+        ]
+      }
+    };
+
+    // ---- Render -------------------------------------------------------------
+    const cardsEl = document.getElementById('cards');
+    const roleSelect = document.getElementById('roleSelect');
+    const search = document.getElementById('q');
+
+    function iconGlyph(label){
+      // Simple first letter “icon”; replace with SVGs if you like
+      return `<span class="icon" aria-hidden="true">${label[0].toUpperCase()}</span>`;
+    }
+
+    function linkItemHTML(item){
+      const safeName = item.name.replace(/"/g,'&quot;');
+      return `
+        <li>
+          <a class="link" href="${item.url}" target="_blank" rel="noopener noreferrer" aria-label="${safeName} (opens in new tab)">
+            ${iconGlyph(item.name)}
+            <span class="txt">
+              <span class="name">${item.name}</span>
+              ${item.note ? `<span class="note">${item.note}</span>` : ""}
+            </span>
+          </a>
+        </li>`;
+    }
+
+    function roleSectionHTML(key, role){
+      const list = role.items.map(linkItemHTML).join("");
+      return `
+        <section class="role" data-role="${key}" aria-labelledby="h-${key}">
+          <h2 id="h-${key}">
+            ${role.title}
+            <span class="badge" aria-hidden="true">${role.items.length} links</span>
+          </h2>
+          <ul class="links">${list}</ul>
+        </section>`;
+    }
+
+    function render(){
+      const roleFilter = roleSelect.value;
+      const term = (search.value || "").trim().toLowerCase();
+
+      const keys = Object.keys(LINKS);
+      let html = "";
+
+      for (const key of keys){
+        if (roleFilter !== 'all' && roleFilter !== key) continue;
+
+        const role = JSON.parse(JSON.stringify(LINKS[key])); // shallow clone
+        // filter links by search term
+        if (term){
+          role.items = role.items.filter(i =>
+            i.name.toLowerCase().includes(term) ||
+            (i.note && i.note.toLowerCase().includes(term))
+          );
+        }
+        if (role.items.length === 0) continue; // hide empty sections
+
+        html += roleSectionHTML(key, role);
+      }
+
+      cardsEl.innerHTML = html || `<p>No links match your filters.</p>`;
+    }
+
+    roleSelect.addEventListener('change', render);
+    search.addEventListener('input', render);
+    render();
+  </script>
+</body>
+</html>
