@@ -82,6 +82,18 @@
       appearance:none; border:1px solid var(--border); background:var(--panel); color:var(--text);
       border-radius:12px; padding:10px 12px; font-size:1rem; min-width:240px; box-shadow: var(--shadow);
     }
+    /* Align search to the far right on wider screens */
+    .toolbar { flex-wrap: nowrap; justify-content: flex-start; }
+    .toolbar .search { margin-left: auto; }
+    
+    /* Nice wrap behavior on small screens */
+    @media (max-width: 640px) {
+      .toolbar { flex-wrap: wrap; }
+      .toolbar .search {
+        margin-left: 0;
+        width: 100%;
+      }
+    }
 
     /* Card grid */
     .grid{display:grid; gap:18px; padding:20px 16px 48px}
