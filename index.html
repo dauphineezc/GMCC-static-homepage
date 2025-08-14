@@ -11,7 +11,7 @@
     :root{
       /* Brand palette */
       --blue-600:#003A70;
-      --blue-700:#002B52;          /* slightly darker for dark mode / depth */
+      --blue-700:#002B52;          /* deeper blue for dark mode / depth */
       --green-600:#4C8B2B;
       --green-700:#3A6C21;
   
@@ -69,53 +69,54 @@
   
     /* Title + tagline */
     .brand-row h1{
-      margin:0; font-weight:700; letter-spacing:.2px;
+      margin:0; letter-spacing:.2px;
+      font-family:"Franklin Gothic Medium","Franklin Gothic","ITC Franklin Gothic",Arial,sans-serif;
+      font-weight:500;
       font-size:clamp(1.4rem, 1rem + 2vw, 2rem);
-      font-family: "Franklin Gothic Medium", "Franklin Gothic", "ITC Franklin Gothic", Arial, sans-serif;
-      font-weight: 500;
       color:var(--blue-600);
     }
-    .tagline {
-      margin: 0;
-      color: #333; /* Dark grey for readability */
-      font-size: clamp(.95rem, .8rem + .5vw, 1.05rem);
+    .tagline{
+      margin:0; color:#333; /* darker for readability */
+      font-size:clamp(.95rem, .8rem + .5vw, 1.05rem);
     }
   
     /* Toolbar (filters + search) */
     .toolbar{margin-top:10px; display:flex; flex-wrap:wrap; gap:10px; align-items:center}
     .pills{display:flex; flex-wrap:wrap; gap:8px}
   
-    .pill {
-      cursor: pointer;
-      background: var(--panel);
-      color: var(--text);
-      padding: 8px 12px;
-      border-radius: 999px;
-      font-weight: 600;
-      font-size: .9rem;
-      box-shadow: var(--shadow);
-      border: 1px solid var(--border); /* default state */
-      background-clip: border-box;
+    .pill{
+      cursor:pointer;
+      background:var(--panel);
+      color:var(--text);
+      padding:8px 12px;
+      border-radius:999px;
+      font-weight:600;
+      font-size:.9rem;
+      box-shadow:var(--shadow);
+      border:1px solid var(--border); /* subtle rim in unpressed state */
+      background-clip:border-box;
     }
   
-    .pill[aria-pressed="true"] {
-      border: none; /* remove border entirely */
-      padding: 9px 13px; /* small offset to keep pill size consistent without border */
-      background: linear-gradient(
+    /* Pressed pill: no white border & smooth green→blue gradient */
+    .pill[aria-pressed="true"]{
+      border:none;                 /* remove the white/halo edge */
+      padding:9px 13px;            /* keep overall size identical */
+      color:#fff;
+      background:linear-gradient(
         135deg,
         var(--green-600) 0%,
         color-mix(in oklab, var(--green-600) 55%, var(--blue-600) 45%) 28%,
         color-mix(in oklab, var(--green-600) 35%, var(--blue-600) 65%) 60%,
         var(--blue-600) 100%
       );
-      color: #fff;
-      background-clip: border-box; /* ensure it paints to the rounded edge */
+      background-clip:border-box;  /* paint to the rounded edge */
+      -webkit-background-clip:border-box; /* Safari */
     }
   
     .search{
       appearance:none; border:1px solid var(--border); background:var(--panel); color:var(--text);
       border-radius:12px; padding:10px 12px; font-size:1rem; min-width:240px; box-shadow:var(--shadow);
-      margin-left:auto;                      /* push to right on wide screens */
+      margin-left:auto; /* push to right on wide screens */
     }
     @media (max-width:640px){
       .toolbar{flex-wrap:wrap}
@@ -131,7 +132,7 @@
     }
     .role-head{display:flex; align-items:center; gap:12px; margin-bottom:10px}
   
-    /* Role icon — blue (top-left) -> green (bottom-right), smooth */
+    /* Role icon — blue (top-left) → green (bottom-right), smooth and balanced */
     .role-icon{
       inline-size:40px; block-size:40px; border-radius:10px; flex:none;
       display:inline-grid; place-items:center; color:#fff; font-weight:700;
@@ -164,7 +165,7 @@
     .dot{inline-size:10px; block-size:10px; border-radius:50%; flex:none;
          background:linear-gradient(135deg, var(--green-600), var(--blue-600))}
   
-    /* Footer */
+    /* Footer + a11y */
     footer{color:var(--muted); font-size:.9rem; padding:0 16px 24px}
     .sr-only{position:absolute; width:1px; height:1px; padding:0; margin:-1px; overflow:hidden; clip:rect(0,0,0,0); border:0}
   </style>
