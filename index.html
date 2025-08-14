@@ -39,17 +39,15 @@
     /* Hero */
     .hero{
       position:relative; overflow:hidden; isolation:isolate;
-      background: radial-gradient(1200px 600px at 10% 0%, color-mix(in oklab, var(--blue-600) 40%, white) 0%, transparent 70%),
-                  radial-gradient(900px 500px at 100% 20%, color-mix(in oklab, var(--green-600) 45%, white) 0%, transparent 70%),
-                  linear-gradient(135deg, #e9f3ff, #e7fbf5);
-      padding:48px 24px 28px;
-      border-bottom:1px solid var(--border);
+      background: radial-gradient(1200px 600px at 10% 0%, color-mix(in oklab, var(--blue-600) 55%, #000 0%) 0%, transparent 70%),
+                  radial-gradient(900px 500px at 100% 20%, color-mix(in oklab, var(--green-600) 55%, #000 0%) 0%, transparent 70%),
+                  linear-gradient(135deg, color-mix(in oklab, #e9f3ff 80%, #cfe5ff 20%), color-mix(in oklab, #e7fbf5 80%, #c6f0e6 20%));
     }
     @media (prefers-color-scheme: dark){
       .hero{
-        background: radial-gradient(1100px 550px at 10% -10%, color-mix(in oklab, var(--blue-700) 55%, black) 0%, transparent 70%),
-                    radial-gradient(900px 520px at 100% 10%, color-mix(in oklab, var(--green-700) 55%, black) 0%, transparent 70%),
-                    linear-gradient(135deg, #0b1220, #08151a);
+        background: radial-gradient(1100px 550px at 10% -10%, color-mix(in oklab, var(--blue-700) 65%, black) 0%, transparent 70%),
+                    radial-gradient(900px 520px at 100% 10%, color-mix(in oklab, var(--green-700) 65%, black) 0%, transparent 70%),
+                    linear-gradient(135deg, #0a1220, #08131a);
       }
     }
     .container{max-width:1100px; margin-inline:auto; padding:0 16px}
@@ -60,7 +58,10 @@
       height: 48px;
       border-radius: 12px;
       object-fit: contain; /* keeps logo proportions */
-      box-shadow: 0 6px 18px rgba(0,0,0,.08);
+      border-radius: 0;
+      box-shadow: none;
+      background: none;
+      display: block;
     }
     h1{margin:0; font-weight:700; letter-spacing:.2px; font-size:clamp(1.4rem, 1rem + 2vw, 2rem)}
     .tagline{margin:0; color:var(--muted); font-size:clamp(.95rem, .8rem + .5vw, 1.05rem)}
@@ -109,7 +110,7 @@
     .role-head{display:flex; align-items:center; gap:12px; margin-bottom:10px}
     .role-icon{
       inline-size:40px; block-size:40px; border-radius:10px;
-      background:linear-gradient(135deg, var(--blue-600), var(--green-600));
+      background: linear-gradient(135deg, var(--blue-600) 75%, var(--green-600) 25%);
       display:inline-grid; place-items:center; color:white; font-weight:700;
       box-shadow: 0 8px 20px rgba(16,90,176,.15);
       flex:none;
