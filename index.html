@@ -137,8 +137,6 @@
     .name{font-weight:600}
     .note{color:var(--muted); font-size:.9rem}
     .txt{display:flex; flex-direction:column}
-
-    .title{ color: #003A70; }
     
     /* 1) PRESSED PILL — green top-left → blue bottom-right, smooth & ~50/50 */
     .pill[aria-pressed="true"]{
@@ -167,6 +165,28 @@
       box-shadow: 0 8px 20px rgba(16,90,176,.15);
       flex:none;
     }
+
+    /* Make the gradient stop at the inner radius so it doesn't "bleed" under the border */
+    .pill{
+      background-clip: padding-box;
+      -webkit-background-clip: padding-box; /* Safari */
+    }
+    
+    /* Pressed pill — smooth, green (top-left) → blue (bottom-right), slightly blue-leaning */
+    .pill[aria-pressed="true"]{
+      border-color: var(--border);            /* keep a real border */
+      background: linear-gradient(
+        135deg,
+        var(--green-600) 0%,
+        color-mix(in oklab, var(--green-600) 55%, var(--blue-600) 45%) 28%,
+        color-mix(in oklab, var(--green-600) 35%, var(--blue-600) 65%) 60%,
+        var(--blue-600) 100%
+      );
+      color:#fff;
+    }
+
+    /* Apply brand blue to the hero title */
+    .brand-row h1 { color: var(--blue-600); }
 
     /* Footer */
     footer{color:var(--muted); font-size:.9rem; padding:0 16px 24px}
