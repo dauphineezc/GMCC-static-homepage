@@ -71,9 +71,15 @@
     .brand-row h1{
       margin:0; font-weight:700; letter-spacing:.2px;
       font-size:clamp(1.4rem, 1rem + 2vw, 2rem);
-      color:var(--blue-600);               /* brand blue title */
+      font-family: "Franklin Gothic Medium", "Franklin Gothic", "ITC Franklin Gothic", Arial, sans-serif;
+      font-weight: 500;
+      color:var(--blue-600);
     }
-    .tagline{margin:0; color:var(--muted); font-size:clamp(.95rem,.8rem + .5vw,1.05rem)}
+    .tagline {
+      margin: 0;
+      color: #333; /* Dark grey for readability */
+      font-size: clamp(.95rem, .8rem + .5vw, 1.05rem);
+    }
   
     /* Toolbar (filters + search) */
     .toolbar{margin-top:10px; display:flex; flex-wrap:wrap; gap:10px; align-items:center}
@@ -140,12 +146,6 @@
     }
   
     .role-title{font-size:1.05rem; margin:0}
-    .badge{
-      font-size:.72rem; color:#0b5;
-      background:color-mix(in oklab, var(--green-600) 12%, transparent);
-      border:1px solid color-mix(in oklab, var(--green-600) 40%, transparent);
-      padding:2px 8px; border-radius:999px
-    }
   
     /* Links */
     ul.links{list-style:none; padding:0; margin:0; display:grid; gap:10px}
@@ -267,7 +267,6 @@
           <div class="role-head">
             <div class="role-icon" aria-hidden="true">${role.icon}</div>
             <h2 class="role-title" id="h-${key}">${role.title}</h2>
-            <span class="badge" aria-hidden="true" style="margin-left:auto">${role.items.length} links</span>
           </div>
           <ul class="links">${items}</ul>
         </section>
