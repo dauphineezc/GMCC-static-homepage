@@ -39,8 +39,8 @@
     /* Hero */
     .hero{
       position:relative; overflow:hidden; isolation:isolate;
-      background: radial-gradient(1200px 600px at 10% 0%, color-mix(in oklab, var(--blue-600) 55%, #000 0%) 0%, transparent 70%),
-                  radial-gradient(900px 500px at 100% 20%, color-mix(in oklab, var(--green-600) 55%, #000 0%) 0%, transparent 70%),
+      background: radial-gradient(1200px 600px at 10% 0%, color-mix(in oklab, var(--blue-600) 50%, #000 0%) 0%, transparent 70%),
+                  radial-gradient(900px 500px at 100% 20%, color-mix(in oklab, var(--green-600) 50%, #000 0%) 0%, transparent 70%),
                   linear-gradient(135deg, color-mix(in oklab, #e9f3ff 80%, #cfe5ff 20%), color-mix(in oklab, #e7fbf5 80%, #c6f0e6 20%));
       padding:48px 24px 28px; border-bottom:1px solid var(--border);
     }
@@ -137,6 +137,36 @@
     .name{font-weight:600}
     .note{color:var(--muted); font-size:.9rem}
     .txt{display:flex; flex-direction:column}
+
+    .title{ color: #003A70; }
+    
+    /* 1) PRESSED PILL — green top-left → blue bottom-right, smooth & ~50/50 */
+    .pill[aria-pressed="true"]{
+      border-color: transparent;
+      background: linear-gradient(
+        135deg,
+        var(--green-600) 0%,
+        color-mix(in oklab, var(--green-600) 70%, var(--blue-600) 30%) 35%,
+        color-mix(in oklab, var(--green-600) 40%, var(--blue-600) 60%) 60%,
+        var(--blue-600) 100%
+      );
+      color: #fff;
+    }
+
+    /* 2) ROLE ICON — blue top-left → green bottom-right, gradual & less green overall */
+    .role-icon{
+      inline-size:40px; block-size:40px; border-radius:10px;
+      background: linear-gradient(
+        135deg,
+        var(--blue-600) 0%,
+        color-mix(in oklab, var(--blue-600) 70%, var(--green-600) 30%) 45%,
+        color-mix(in oklab, var(--blue-600) 40%, var(--green-600) 60%) 70%,
+        var(--green-600) 100%
+      );
+      display:inline-grid; place-items:center; color:#fff; font-weight:700;
+      box-shadow: 0 8px 20px rgba(16,90,176,.15);
+      flex:none;
+    }
 
     /* Footer */
     footer{color:var(--muted); font-size:.9rem; padding:0 16px 24px}
