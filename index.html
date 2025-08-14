@@ -79,31 +79,31 @@
     .toolbar{margin-top:10px; display:flex; flex-wrap:wrap; gap:10px; align-items:center}
     .pills{display:flex; flex-wrap:wrap; gap:8px}
   
-    .pill{
-      cursor:pointer;
-      border:1px solid var(--border);
-      background:var(--panel);
-      color:var(--text);
-      padding:8px 12px; border-radius:999px; font-weight:600; font-size:.9rem;
-      box-shadow:var(--shadow);
-  
-      /* Prevent gradient bleed under transparent border when active */
-      background-clip:padding-box;
-      -webkit-background-clip:padding-box;
+    .pill {
+      cursor: pointer;
+      background: var(--panel);
+      color: var(--text);
+      padding: 8px 12px;
+      border-radius: 999px;
+      font-weight: 600;
+      font-size: .9rem;
+      box-shadow: var(--shadow);
+      border: 1px solid var(--border); /* default state */
+      background-clip: border-box;
     }
   
-    /* Active pill — smooth green (top-left) -> blue (bottom-right); no white outline */
-    .pill[aria-pressed="true"]{
-      border-color:transparent;            /* invisible border */
-      box-shadow:none;                      /* remove halo */
-      color:#fff;
-      background:linear-gradient(
+    .pill[aria-pressed="true"] {
+      border: none; /* remove border entirely */
+      padding: 9px 13px; /* small offset to keep pill size consistent without border */
+      background: linear-gradient(
         135deg,
         var(--green-600) 0%,
         color-mix(in oklab, var(--green-600) 55%, var(--blue-600) 45%) 28%,
         color-mix(in oklab, var(--green-600) 35%, var(--blue-600) 65%) 60%,
         var(--blue-600) 100%
       );
+      color: #fff;
+      background-clip: border-box; /* ensure it paints to the rounded edge */
     }
   
     .search{
