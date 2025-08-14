@@ -10,10 +10,10 @@
   <style>
     :root{
       /* Brand palette (blue + green) */
-      --blue-600:#1b75d0;
-      --blue-700:#105bb0;
-      --green-600:#0f8f7a;
-      --green-700:#0b7463;
+      --blue-600: #003A70; /* brand blue */
+      --blue-700: #00294E; /* slightly darker for hover/dark mode */
+      --green-600: #4C8B2B; /* brand green */
+      --green-700: #35631F; /* slightly darker for hover/dark mode */
 
       --bg: #f6f9fb;
       --panel:#ffffff;
@@ -55,9 +55,11 @@
     .container{max-width:1100px; margin-inline:auto; padding:0 16px}
     .hero-inner{display:flex; flex-direction:column; gap:14px}
     .brand-row{display:flex; align-items:center; justify-content:space-between; gap:12px; flex-wrap:wrap}
-    .logo{
-      inline-size:48px; block-size:48px; border-radius:12px;
-      background: linear-gradient(135deg, var(--green-600), var(--blue-600));
+    .logo {
+      width: 48px;
+      height: 48px;
+      border-radius: 12px;
+      object-fit: contain; /* keeps logo proportions */
       box-shadow: 0 6px 18px rgba(0,0,0,.08);
     }
     h1{margin:0; font-weight:700; letter-spacing:.2px; font-size:clamp(1.4rem, 1rem + 2vw, 2rem)}
@@ -147,7 +149,7 @@
     <div class="container hero-inner">
       <div class="brand-row">
         <div style="display:flex; align-items:center; gap:12px">
-          <div class="logo" aria-hidden="true"></div>
+          <img src="Greater-Midland-Ribbon-Logo.png" alt="Greater Midland logo" class="logo">
           <div>
             <h1>Greater Midland Quick Links</h1>
             <p class="tagline">Quick access to commonly used systems.</p>
