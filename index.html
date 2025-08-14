@@ -9,185 +9,161 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
   <style>
     :root{
-      /* Brand palette (blue + green) */
-      --blue-600: #003A70; /* brand blue */
-      --blue-700: #003A70; /* slightly darker for hover/dark mode */
-      --green-600: #4C8B2B; /* brand green */
-      --green-700: #4C8B2B; /* slightly darker for hover/dark mode */
-
-      --bg: #f6f9fb;
+      /* Brand palette */
+      --blue-600:#003A70;
+      --blue-700:#002B52;          /* slightly darker for dark mode / depth */
+      --green-600:#4C8B2B;
+      --green-700:#3A6C21;
+  
+      /* UI tokens */
+      --bg:#f6f9fb;
       --panel:#ffffff;
       --text:#101418;
       --muted:#5a6b7a;
       --border:#e5edf3;
       --ring:#7cd6c6;
-      --shadow: 0 10px 30px rgba(16,90,176,.08), 0 6px 18px rgba(11,116,99,.06);
+      --shadow:0 10px 30px rgba(16,90,176,.08), 0 6px 18px rgba(11,116,99,.06);
     }
+  
     @media (prefers-color-scheme: dark){
       :root{
-        --bg:#0c1116; --panel:#0f151b; --text:#eaf2f7; --muted:#9fb2c4; --border:#18222c; --shadow:none;
+        --bg:#0c1116; --panel:#0f151b; --text:#eaf2f7;
+        --muted:#9fb2c4; --border:#18222c; --shadow:none;
       }
     }
-
+  
+    /* Base */
     *{box-sizing:border-box}
     html,body{height:100%}
     body{
       margin:0; background:var(--bg); color:var(--text);
-      font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, "Helvetica Neue", Arial, sans-serif;
+      font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,"Helvetica Neue",Arial,sans-serif;
     }
-
+  
     /* Hero */
     .hero{
       position:relative; overflow:hidden; isolation:isolate;
-      background: radial-gradient(1200px 600px at 10% 0%, color-mix(in oklab, var(--blue-600) 50%, #000 0%) 0%, transparent 70%),
-                  radial-gradient(900px 500px at 100% 20%, color-mix(in oklab, var(--green-600) 50%, #000 0%) 0%, transparent 70%),
-                  linear-gradient(135deg, color-mix(in oklab, #e9f3ff 80%, #cfe5ff 20%), color-mix(in oklab, #e7fbf5 80%, #c6f0e6 20%));
+      background:
+        radial-gradient(1200px 600px at 10% 0%, color-mix(in oklab, var(--blue-600) 50%, #000 0%) 0%, transparent 70%),
+        radial-gradient(900px 500px at 100% 20%, color-mix(in oklab, var(--green-600) 50%, #000 0%) 0%, transparent 70%),
+        linear-gradient(135deg, color-mix(in oklab, #e9f3ff 80%, #cfe5ff 20%), color-mix(in oklab, #e7fbf5 80%, #c6f0e6 20%));
       padding:48px 24px 28px; border-bottom:1px solid var(--border);
     }
     @media (prefers-color-scheme: dark){
       .hero{
-        background: radial-gradient(1100px 550px at 10% -10%, color-mix(in oklab, var(--blue-700) 65%, black) 0%, transparent 70%),
-                    radial-gradient(900px 520px at 100% 10%, color-mix(in oklab, var(--green-700) 65%, black) 0%, transparent 70%),
-                    linear-gradient(135deg, #0a1220, #08131a);
+        background:
+          radial-gradient(1100px 550px at 10% -10%, color-mix(in oklab, var(--blue-700) 65%, black) 0%, transparent 70%),
+          radial-gradient(900px 520px at 100% 10%, color-mix(in oklab, var(--green-700) 65%, black) 0%, transparent 70%),
+          linear-gradient(135deg, #0a1220, #08131a);
       }
     }
+  
     .container{max-width:1100px; margin-inline:auto; padding:0 16px}
     .hero-inner{display:flex; flex-direction:column; gap:14px}
     .brand-row{display:flex; align-items:center; justify-content:space-between; gap:12px; flex-wrap:wrap}
-    .logo {
-      width: 48px;
-      height: 48px;
-      border-radius: 12px;
-      object-fit: contain; /* keeps logo proportions */
-      border-radius: 0;
-      box-shadow: none;
-      background: none;
-      display: block;
+  
+    .logo{
+      width:48px; height:48px; object-fit:contain;
+      border-radius:0; background:none; box-shadow:none; display:block;
     }
-    h1{margin:0; font-weight:700; letter-spacing:.2px; font-size:clamp(1.4rem, 1rem + 2vw, 2rem)}
-    .tagline{margin:0; color:var(--muted); font-size:clamp(.95rem, .8rem + .5vw, 1.05rem)}
-
-    /* Filter bar */
-    .toolbar{
-      margin-top:10px; display:flex; flex-wrap:wrap; gap:10px; align-items:center;
+  
+    /* Title + tagline */
+    .brand-row h1{
+      margin:0; font-weight:700; letter-spacing:.2px;
+      font-size:clamp(1.4rem, 1rem + 2vw, 2rem);
+      color:var(--blue-600);               /* brand blue title */
     }
+    .tagline{margin:0; color:var(--muted); font-size:clamp(.95rem,.8rem + .5vw,1.05rem)}
+  
+    /* Toolbar (filters + search) */
+    .toolbar{margin-top:10px; display:flex; flex-wrap:wrap; gap:10px; align-items:center}
     .pills{display:flex; flex-wrap:wrap; gap:8px}
+  
     .pill{
-      cursor:pointer; border:1px solid var(--border); background:var(--panel); color:var(--text);
-      padding:8px 12px; border-radius:999px; font-weight:600; font-size:.9rem;
-      box-shadow: var(--shadow);
-    }
-    .pill[aria-pressed="true"]{
-      border-color: transparent;
-      background: linear-gradient( 135deg, var(--green-600) 0%, var(--green-600) 55%, var(--blue-600) 100% );
-      color: #fff;
-    }
-    .search{
-      appearance:none; border:1px solid var(--border); background:var(--panel); color:var(--text);
-      border-radius:12px; padding:10px 12px; font-size:1rem; min-width:240px; box-shadow: var(--shadow);
-    }
-    /* Align search to the far right on wider screens */
-    .toolbar { flex-wrap: nowrap; justify-content: flex-start; }
-    .toolbar .search { margin-left: auto; }
-    
-    /* Nice wrap behavior on small screens */
-    @media (max-width: 640px) {
-      .toolbar { flex-wrap: wrap; }
-      .toolbar .search {
-        margin-left: 0;
-        width: 100%;
-      }
-    }
-
-    /* Card grid */
-    .grid{display:grid; gap:18px; padding:20px 16px 48px}
-    .grid{grid-template-columns: repeat( auto-fit, minmax(260px, 1fr) );}
-
-    .role-card{
-      background:var(--panel); border:1px solid var(--border); border-radius:16px; padding:16px;
-      box-shadow: var(--shadow); position:relative;
-      overflow:hidden;
-    }
-    .role-head{display:flex; align-items:center; gap:12px; margin-bottom:10px}
-    .role-icon{
-      inline-size:40px; block-size:40px; border-radius:10px;
-      background: linear-gradient( 135deg, var(--blue-600) 0%, var(--blue-600) 55%, var(--green-600) 100% );
-      display:inline-grid; place-items:center; color:white; font-weight:700;
-      box-shadow: 0 8px 20px rgba(16,90,176,.15);
-      flex:none;
-    }
-    .role-title{font-size:1.05rem; margin:0}
-    .badge{font-size:.72rem; color:#0b5; background:color-mix(in oklab, var(--green-600) 12%, transparent);
-      border:1px solid color-mix(in oklab, var(--green-600) 40%, transparent); padding:2px 8px; border-radius:999px}
-    ul.links{list-style:none; padding:0; margin:0; display:grid; gap:10px}
-    .link{
-      display:flex; gap:10px; align-items:center; text-decoration:none; border-radius:12px; padding:10px 12px;
-      background:linear-gradient(0deg, color-mix(in oklab, var(--blue-600) 6%, transparent), color-mix(in oklab, var(--blue-600) 6%, transparent));
+      cursor:pointer;
       border:1px solid var(--border);
-      transition:transform .06s ease, background .15s ease, border-color .15s ease;
-      outline:none;
+      background:var(--panel);
+      color:var(--text);
+      padding:8px 12px; border-radius:999px; font-weight:600; font-size:.9rem;
+      box-shadow:var(--shadow);
+  
+      /* Prevent gradient bleed under transparent border when active */
+      background-clip:padding-box;
+      -webkit-background-clip:padding-box;
     }
-    .link:hover{transform:translateY(-1px); border-color:color-mix(in oklab, var(--blue-600) 36%, var(--border))}
-    .link:focus{box-shadow:0 0 0 3px var(--ring)}
-    .link, .link:visited { color: inherit; text-decoration: none; }
-    .link .name { color: #003A70; }
-    .link:hover .name, .link:focus .name, .link:visited .name { color: #003A70; }
-    .dot{inline-size:10px; block-size:10px; border-radius:50%;
-      background:linear-gradient(135deg, var(--green-600), var(--blue-600)); flex:none}
-    .name{font-weight:600}
-    .note{color:var(--muted); font-size:.9rem}
-    .txt{display:flex; flex-direction:column}
-    
-    /* 1) PRESSED PILL — green top-left → blue bottom-right, smooth & ~50/50 */
+  
+    /* Active pill — smooth green (top-left) -> blue (bottom-right); no white outline */
     .pill[aria-pressed="true"]{
-      border-color: transparent;
-      background: linear-gradient(
-        135deg,
-        var(--green-600) 0%,
-        color-mix(in oklab, var(--green-600) 70%, var(--blue-600) 30%) 35%,
-        color-mix(in oklab, var(--green-600) 40%, var(--blue-600) 60%) 60%,
-        var(--blue-600) 100%
-      );
-      color: #fff;
-    }
-
-    /* 2) ROLE ICON — blue top-left → green bottom-right, gradual & less green overall */
-    .role-icon{
-      inline-size:40px; block-size:40px; border-radius:10px;
-      background: linear-gradient(
-        135deg,
-        var(--blue-600) 0%,
-        color-mix(in oklab, var(--blue-600) 70%, var(--green-600) 30%) 45%,
-        color-mix(in oklab, var(--blue-600) 40%, var(--green-600) 60%) 70%,
-        var(--green-600) 100%
-      );
-      display:inline-grid; place-items:center; color:#fff; font-weight:700;
-      box-shadow: 0 8px 20px rgba(16,90,176,.15);
-      flex:none;
-    }
-
-    /* Make the gradient stop at the inner radius so it doesn't "bleed" under the border */
-    .pill{
-      background-clip: padding-box;
-      -webkit-background-clip: padding-box; /* Safari */
-    }
-    
-    /* Pressed pill — smooth, green (top-left) → blue (bottom-right), slightly blue-leaning */
-    .pill[aria-pressed="true"]{
-      border-color: var(--border);            /* keep a real border */
-      background: linear-gradient(
+      border-color:transparent;            /* invisible border */
+      box-shadow:none;                      /* remove halo */
+      color:#fff;
+      background:linear-gradient(
         135deg,
         var(--green-600) 0%,
         color-mix(in oklab, var(--green-600) 55%, var(--blue-600) 45%) 28%,
         color-mix(in oklab, var(--green-600) 35%, var(--blue-600) 65%) 60%,
         var(--blue-600) 100%
       );
-      color:#fff;
     }
-
-    /* Apply brand blue to the hero title */
-    .brand-row h1 { color: var(--blue-600); }
-
+  
+    .search{
+      appearance:none; border:1px solid var(--border); background:var(--panel); color:var(--text);
+      border-radius:12px; padding:10px 12px; font-size:1rem; min-width:240px; box-shadow:var(--shadow);
+      margin-left:auto;                      /* push to right on wide screens */
+    }
+    @media (max-width:640px){
+      .toolbar{flex-wrap:wrap}
+      .search{margin-left:0; width:100%}
+    }
+  
+    /* Card grid */
+    .grid{display:grid; gap:18px; padding:20px 16px 48px; grid-template-columns:repeat(auto-fit, minmax(260px, 1fr))}
+  
+    .role-card{
+      background:var(--panel); border:1px solid var(--border); border-radius:16px; padding:16px;
+      box-shadow:var(--shadow); position:relative; overflow:hidden;
+    }
+    .role-head{display:flex; align-items:center; gap:12px; margin-bottom:10px}
+  
+    /* Role icon — blue (top-left) -> green (bottom-right), smooth */
+    .role-icon{
+      inline-size:40px; block-size:40px; border-radius:10px; flex:none;
+      display:inline-grid; place-items:center; color:#fff; font-weight:700;
+      box-shadow:0 8px 20px rgba(16,90,176,.15);
+      background:linear-gradient(
+        135deg,
+        var(--blue-600) 0%,
+        color-mix(in oklab, var(--blue-600) 70%, var(--green-600) 30%) 45%,
+        color-mix(in oklab, var(--blue-600) 40%, var(--green-600) 60%) 70%,
+        var(--green-600) 100%
+      );
+    }
+  
+    .role-title{font-size:1.05rem; margin:0}
+    .badge{
+      font-size:.72rem; color:#0b5;
+      background:color-mix(in oklab, var(--green-600) 12%, transparent);
+      border:1px solid color-mix(in oklab, var(--green-600) 40%, transparent);
+      padding:2px 8px; border-radius:999px
+    }
+  
+    /* Links */
+    ul.links{list-style:none; padding:0; margin:0; display:grid; gap:10px}
+    .link{
+      display:flex; gap:10px; align-items:center; text-decoration:none; border-radius:12px; padding:10px 12px;
+      background:linear-gradient(0deg, color-mix(in oklab, var(--blue-600) 6%, transparent), color-mix(in oklab, var(--blue-600) 6%, transparent));
+      border:1px solid var(--border);
+      transition:transform .06s ease, background .15s ease, border-color .15s ease;
+      outline:none; color:inherit;
+    }
+    .link:hover{transform:translateY(-1px); border-color:color-mix(in oklab, var(--blue-600) 36%, var(--border))}
+    .link:focus{box-shadow:0 0 0 3px var(--ring)}
+    .txt{display:flex; flex-direction:column}
+    .name{font-weight:600; color:var(--blue-600)}
+    .note{color:var(--muted); font-size:.9rem}
+    .dot{inline-size:10px; block-size:10px; border-radius:50%; flex:none;
+         background:linear-gradient(135deg, var(--green-600), var(--blue-600))}
+  
     /* Footer */
     footer{color:var(--muted); font-size:.9rem; padding:0 16px 24px}
     .sr-only{position:absolute; width:1px; height:1px; padding:0; margin:-1px; overflow:hidden; clip:rect(0,0,0,0); border:0}
