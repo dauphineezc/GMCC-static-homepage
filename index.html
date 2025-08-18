@@ -189,6 +189,7 @@
       <div class="toolbar" role="region" aria-label="Filters">
         <div class="pills" role="toolbar" aria-label="Role filters">
           <button class="pill" data-role="all" aria-pressed="true">All</button>
+          <button class="pill" data-role="frequently-visited" aria-pressed="false">Frequently Visited</button>
           <button class="pill" data-role="welcome-center" aria-pressed="false">Welcome Center</button>
           <button class="pill" data-role="wellness-center" aria-pressed="false">Wellness Center</button>
           <button class="pill" data-role="lead-teachers" aria-pressed="false">Lead Teachers</button>
@@ -208,17 +209,24 @@
       // How to add description under link:
       // { name: "Fitness Scheduling", url: "https://example.com/scheduling", note: "Classes & courts" },
     const LINKS = {
+      "frequently-visited": {
+        title: "Frequently Visited",
+        icon: "FV",
+        items: [
+          { name: "ADP WorkForce NOW", url: "https://workforcenow.adp.com/workforcenow/login.html?" },
+          { name: "Facilities Help Desk - Jira Service Management", url: "https://greatermidland.atlassian.net/servicedesk/customer/portal/4" },
+          { name: "Greater Midland", url: "https://www.greatermidland.org/" },
+          { name: "Microsoft Teams", url: "https://teams.microsoft.com/v2/" },
+          { name: "Outlook", url: "https://www.outlook.com/" },
+        ]
+      },
       "welcome-center": {
         title: "Welcome Center",
         icon: "WC",
         items: [
-          { name: "ADP WorkForce NOW", url: "https://workforcenow.adp.com/workforcenow/login.html?" },
           { name: "CMH Master Check-in List - Google Sheets", url: "https://docs.google.com/spreadsheets/d/1USg9EQjjDzMmthw-tFb4EbUUuOVNGw9zQWkLtED4Z6c/edit#gid=824329880" },
           { name: "Edit Presentation | Rise Vision Apps", url: "https://apps.risevision.com/editor/workspace/55c4c231-0dde-4e5a-9274-2f05677d4d2d?cid=40982a2b-29aa-40f6-8b84-2ba97bc536bd" },
-          { name: "Facilities Help Desk - Jira Service Management", url: "https://greatermidland.atlassian.net/servicedesk/customer/portal/4" },
           { name: "Google Keep", url: "https://keep.google.com/u/0/" },
-          { name: "Greater Midland", url: "https://www.greatermidland.org/" },
-          { name: "Outlook", url: "https://www.outlook.com/" },
           { name: "RecTrac Support Desk - Jira Service Management", url: "https://greatermidland.atlassian.net/servicedesk/customer/portal/5" },
           { name: "RecTrac 3.1 WAN Live", url: "https://web1.greatermidland.org/wbwsc/client.wsc/login.html?interfaceParameter=RecTracWAN_1#/login" },
           { name: "Renew Active/One Pass Eligibility", url: "https://www.partneroptumfitness.com/" },
@@ -230,13 +238,8 @@
         title: "Wellness Center",
         icon: "WC",
         items: [
-          { name: "ADP WorkForce NOW", url: "https://workforcenow.adp.com/workforcenow/login.html?" },
-          { name: "Facilities Help Desk - Jira Service Management", url: "https://greatermidland.atlassian.net/servicedesk/customer/portal/4" },
-          { name: "Greater Midland", url: "https://www.greatermidland.org/" },
           { name: "Greater Midland Personal Training", url: "https://www.greatermidland.org/personal-training" },
-          { name: "Microsoft Teams", url: "https://teams.microsoft.com/v2/" },
           { name: "Music", url: "https://freefy.app/playlist/4761/80s-mix" },
-          { name: "Outlook", url: "https://www.outlook.com/" },
           { name: "RecTrac 3.1 WAN Live", url: "https://web1.greatermidland.org/wbwsc/client.wsc/login.html?interfaceParameter=RecTracWAN_1#/login" },
           { name: "Sling", url: "https://getsling.com" },
           { name: "SquareSpace", url: "https://andrew-warren-017o.squarespace.com/config/scheduling/appointments.php?day=today&upnext=1&view=day" },
@@ -246,18 +249,13 @@
         title: "Lead Teachers",
         icon: "LT",
         items: [
-          { name: "ADP WorkForce NOW", url: "https://workforcenow.adp.com/workforcenow/login.html?" },
           { name: "Canva", url: "https://www.canva.com/" },
           { name: "ChildCare Education Institute", url: "https://www.cceifame.com/login.cfm" },
-          { name: "Facilities Help Desk - Jira Service Management", url: "https://greatermidland.atlassian.net/servicedesk/customer/portal/4" },
-          { name: "Greater Midland", url: "https://www.greatermidland.org/" },
           { name: "Insight", url: "https://identity.newworldnow.com/account/login?returnUrl=%2F" },
           { name: "IT Service Desk", url: "https://greatermidland.atlassian.net/servicedesk/customer/portal/2" },
           { name: "Kaymbu", url: "https://my.kaymbu.com/app/login/" },
           { name: "Michigan Virtual", url: "https://michiganvirtual.org/" },
-          { name: "Microsoft Teams", url: "https://teams.microsoft.com/v2/" },
           { name: "MiRegistry", url: "https://miregistry.org/" },
-          { name: "Outlook", url: "https://www.outlook.com/" },
           { name: "Sling", url: "https://getsling.com" },
         ]
       }
