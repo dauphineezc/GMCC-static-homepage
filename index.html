@@ -124,8 +124,16 @@
     }
   
     /* Card grid */
-    .grid{display:grid; gap:18px; padding:20px 16px 48px; grid-template-columns:repeat(auto-fit, minmax(260px, 1fr))}
-  
+    .grid{
+      display:grid;
+      gap:16px;
+      padding:20px 16px 48px;
+      grid-template-columns:repeat(auto-fit, minmax(240px, 1fr));
+    }
+    @media (min-width: 1024px){
+      .grid{ grid-template-columns:repeat(4, 1fr); }
+    }
+    
     .role-card{
       background:var(--panel); border:1px solid var(--border); border-radius:16px; padding:16px;
       box-shadow:var(--shadow); position:relative; overflow:hidden;
