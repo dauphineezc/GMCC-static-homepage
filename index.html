@@ -190,21 +190,22 @@
       /* brighter ombre header */
       .hero{
         background:
-          radial-gradient(1100px 560px at 10% -10%, color-mix(in oklab, var(--blue-600) 70%, white 12%) 0%, transparent 70%),
-          radial-gradient(900px 520px at 100% 10%, color-mix(in oklab, var(--green-600) 70%, white 12%) 0%, transparent 70%),
+          radial-gradient(1100px 560px at 10% -10%, color-mix(in oklab, var(--blue-600) 70%) 0%, transparent 70%),
+          radial-gradient(900px 520px at 100% 10%, color-mix(in oklab, var(--green-600) 70%) 0%, transparent 70%),
           linear-gradient(135deg, #0b1624, #0b1e17);
       }
 
       /* brighter blue for title + link names */
       .brand-row h1{ color: var(--brand-blue-text); }
       .name{ color: var(--brand-blue-text); }
+      .tagline{ color:#737373; }
 
       /* link backgrounds & borders slightly stronger */
       .link{
         background:linear-gradient(
           0deg,
-          color-mix(in oklab, var(--brand-blue-soft) 16%, transparent),
-          color-mix(in oklab, var(--brand-blue-soft) 16%, transparent)
+          color-mix(in oklab, var(--brand-blue-soft) 12%, transparent),
+          color-mix(in oklab, var(--brand-blue-soft) 12%, transparent)
         );
         border-color: color-mix(in oklab, var(--brand-blue-text) 28%, var(--border));
       }
