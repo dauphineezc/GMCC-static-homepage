@@ -183,15 +183,15 @@
         --shadow:none;
 
         /* brighter brand blues (same hue) */
-        --brand-blue-text: color-mix(in oklab, var(--blue-600) 38%, white 62%);
-        --brand-blue-soft: color-mix(in oklab, var(--blue-600) 24%, white 76%);
+        --brand-blue-text: color-mix(in oklab, var(--blue-600) 45%, white 55%);
+        --brand-blue-soft: color-mix(in oklab, var(--blue-600) 30%, white 70%);
       }
 
       /* brighter ombre header */
       .hero{
         background:
-          radial-gradient(1100px 560px at 10% -10%, color-mix(in oklab, var(--blue-600) 70%, white 20%) 0%, transparent 70%),
-          radial-gradient(900px 520px at 100% 10%, color-mix(in oklab, var(--green-600) 70%, white 18%) 0%, transparent 70%),
+          radial-gradient(1100px 560px at 10% -10%, color-mix(in oklab, var(--blue-600) 70%, white 12%) 0%, transparent 70%),
+          radial-gradient(900px 520px at 100% 10%, color-mix(in oklab, var(--green-600) 70%, white 12%) 0%, transparent 70%),
           linear-gradient(135deg, #0b1624, #0b1e17);
       }
 
@@ -206,7 +206,7 @@
           color-mix(in oklab, var(--brand-blue-soft) 16%, transparent),
           color-mix(in oklab, var(--brand-blue-soft) 16%, transparent)
         );
-        border-color: color-mix(in oklab, var(--brand-blue-text) 22%, var(--border));
+        border-color: color-mix(in oklab, var(--brand-blue-text) 28%, var(--border));
       }
       .link:hover{
         border-color: color-mix(in oklab, var(--brand-blue-text) 60%, var(--border));
