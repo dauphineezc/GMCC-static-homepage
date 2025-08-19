@@ -25,36 +25,62 @@
       --shadow:0 10px 30px rgba(16,90,176,.08), 0 6px 18px rgba(11,116,99,.06);
     }
   
+    /* Dark mode only: higher-contrast header + brighter brand blues */
     @media (prefers-color-scheme: dark){
       :root{
-        --bg:#0c1116; --panel:#0f151b; --text:#eaf2f7;
-        --muted:#9fb2c4; --border:#18222c; --shadow:none;
+        /* existing tokens you already had */
+        --bg:#0c1116;
+        --panel:#0f151b;
+        --text:#eaf2f7;
+        --muted:#9fb2c4;
+        --border:#18222c;
+        --shadow:none;
+    
+        /* new, brighter brand blues for text/accents in dark mode (same hue, higher luminance) */
+        --brand-blue-text: color-mix(in oklab, var(--blue-600) 38%, white 62%);
+        --brand-blue-soft: color-mix(in oklab, var(--blue-600) 24%, white 76%); /* used for subtle tints */
       }
-    }
-  
-    /* Base */
-    *{box-sizing:border-box}
-    html,body{height:100%}
-    body{
-      margin:0; background:var(--bg); color:var(--text);
-      font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,"Helvetica Neue",Arial,sans-serif;
-    }
-  
-    /* Hero */
-    .hero{
-      position:relative; overflow:hidden; isolation:isolate;
-      background:
-        radial-gradient(1200px 600px at 10% 0%, color-mix(in oklab, var(--blue-600) 50%, #000 0%) 0%, transparent 70%),
-        radial-gradient(900px 500px at 100% 20%, color-mix(in oklab, var(--green-600) 50%, #000 0%) 0%, transparent 70%),
-        linear-gradient(135deg, color-mix(in oklab, #e9f3ff 80%, #cfe5ff 20%), color-mix(in oklab, #e7fbf5 80%, #c6f0e6 20%));
-      padding:48px 24px 28px; border-bottom:1px solid var(--border);
-    }
-    @media (prefers-color-scheme: dark){
+    
+      /* Brighter ombre header in dark mode */
       .hero{
         background:
-          radial-gradient(1100px 550px at 10% -10%, color-mix(in oklab, var(--blue-700) 65%, black) 0%, transparent 70%),
-          radial-gradient(900px 520px at 100% 10%, color-mix(in oklab, var(--green-700) 65%, black) 0%, transparent 70%),
-          linear-gradient(135deg, #0a1220, #08131a);
+          /* brighter blue bloom (top-left) */
+          radial-gradient(
+            1100px 560px at 10% -10%,
+            color-mix(in oklab, var(--blue-600) 70%, white 20%) 0%,
+            transparent 70%
+          ),
+          /* brighter green bloom (top-right) */
+          radial-gradient(
+            900px 520px at 100% 10%,
+            color-mix(in oklab, var(--green-600) 70%, white 18%) 0%,
+            transparent 70%
+          ),
+          /* base ramp slightly lighter for contrast */
+          linear-gradient(135deg, #0b1624, #0b1e17);
+      }
+    
+      /* Title + “blue” names use brighter blue in dark mode */
+      .brand-row h1{ color: var(--brand-blue-text); }
+      .name{ color: var(--brand-blue-text); }
+    
+      /* Subtle blue-tinted link backgrounds & stronger hover borders in dark mode */
+      .link{
+        background:
+          linear-gradient(
+            0deg,
+            color-mix(in oklab, var(--brand-blue-soft) 16%, transparent),
+            color-mix(in oklab, var(--brand-blue-soft) 16%, transparent)
+          );
+        border-color: color-mix(in oklab, var(--brand-blue-text) 22%, var(--border));
+      }
+      .link:hover{
+        border-color: color-mix(in oklab, var(--brand-blue-text) 60%, var(--border));
+      }
+    
+      /* (Optional) make the pills' pressed state read a touch brighter in dark */
+      .pill[aria-pressed="true"]{
+        filter: saturate(1.05) brightness(1.06);
       }
     }
 
